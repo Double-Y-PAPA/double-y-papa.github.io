@@ -1,82 +1,661 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>더블와이파파 | Double Y Papa</title>
-    <style>
-        body { font-family: 'Pretendard', sans-serif; margin: 0; padding: 0; line-height: 1.7; color: #222; }
-        header { background: #f6f6f6; padding: 20px; text-align: center; border-bottom: 1px solid #ddd; }
-        nav a { margin: 0 15px; text-decoration: none; color: #333; font-weight: 600; }
-        section { max-width: 900px; margin: 40px auto; padding: 0 20px; }
-        h1, h2 { font-weight: 700; }
-        footer { text-align: center; padding: 40px; background: #fafafa; margin-top: 50px; border-top: 1px solid #eee; }
-        .link-button { display: inline-block; padding: 10px 15px; margin: 5px; background: #333; color: #fff; border-radius: 6px; text-decoration: none; }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>더블와이파파 | 신중년의 두 번째 삶을 여는 글과 강의</title>
+
+  <!-- 따뜻한 느낌의 웹폰트 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #fdf7f2;
+      --bg-soft: #fff7ec;
+      --card: #ffffff;
+      --accent: #f2b8a0;
+      --accent-soft: #fde1d4;
+      --text: #262626;
+      --text-soft: #555555;
+      --border-soft: #f0e0d4;
+      --shadow-soft: 0 14px 35px rgba(0,0,0,0.04);
+      --radius-lg: 18px;
+      --radius-xl: 26px;
+      --max-width: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top left, #ffe9d6 0, #fdf7f2 42%, #fdf7f2 100%);
+      color: var(--text);
+      line-height: 1.8;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* 상단 네비게이션 */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 247, 242, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(240, 224, 212, 0.6);
+    }
+
+    .nav-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .brand span:first-child {
+      letter-spacing: 0.08em;
+      font-size: 0.78rem;
+      color: var(--text-soft);
+      text-transform: uppercase;
+    }
+
+    .brand span:last-child {
+      font-size: 1.05rem;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 0.9rem;
+    }
+
+    nav a {
+      padding: 6px 10px;
+      border-radius: 999px;
+      color: var(--text-soft);
+      transition: all 0.18s ease-out;
+      border: 1px solid transparent;
+    }
+
+    nav a:hover {
+      background: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--text);
+    }
+
+    /* 공통 레이아웃 */
+    main {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 26px 18px 80px;
+    }
+
+    section {
+      margin-top: 40px;
+    }
+
+    .section-title {
+      font-size: 1rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 1.6rem;
+    }
+
+    p {
+      margin: 0 0 10px;
+      color: var(--text-soft);
+      font-size: 0.98rem;
+    }
+
+    /* 히어로 영역 */
+    .hero {
+      margin-top: 26px;
+      padding: 30px 26px 30px;
+      border-radius: var(--radius-xl);
+      background: linear-gradient(135deg, #ffe2cc 0%, #fff7ec 55%, #fefcf8 100%);
+      box-shadow: var(--shadow-soft);
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+      gap: 28px;
+      align-items: center;
+    }
+
+    .hero-title {
+      font-size: 1.9rem;
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+
+    .hero-sub {
+      font-size: 0.98rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(255,255,255,0.85);
+      font-size: 0.78rem;
+      margin-bottom: 10px;
+    }
+
+    .hero-badge span {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #48c774;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .btn-primary {
+      padding: 9px 16px;
+      border-radius: 999px;
+      border: none;
+      background: #f09f7f;
+      color: #fff;
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      box-shadow: 0 10px 22px rgba(225, 133, 97, 0.35);
+      transition: transform 0.14s ease-out, box-shadow 0.14s ease-out;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 28px rgba(225, 133, 97, 0.42);
+    }
+
+    .btn-ghost {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.6);
+      color: var(--text-soft);
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    .hero-note {
+      font-size: 0.8rem;
+      color: rgba(60, 54, 46, 0.8);
+      margin-top: 16px;
+    }
+
+    .hero-card {
+      background: rgba(255,255,255,0.9);
+      border-radius: 20px;
+      padding: 16px 18px 18px;
+      border: 1px solid rgba(255,255,255,0.9);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.04);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.9rem;
+    }
+
+    .hero-card-title {
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .hero-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #fdf1dd;
+      font-size: 0.78rem;
+      color: #a0653c;
+      margin-right: 4px;
+    }
+
+    .hero-chip-dot {
+      width: 5px;
+      height: 5px;
+      border-radius: 999px;
+      background: #e38c5a;
+    }
+
+    /* 카드 공통 */
+    .card {
+      background: var(--card);
+      border-radius: var(--radius-lg);
+      padding: 22px 22px 20px;
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .stack {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .book-item {
+      margin-bottom: 10px;
+      padding-left: 3px;
+      position: relative;
+    }
+
+    .book-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 6px;
+    }
+
+    .book-dot.blue { background: #4ca3ff; }
+    .book-dot.green { background: #54c07a; }
+
+    .book-sub {
+      font-size: 0.85rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+      opacity: 0.85;
+    }
+
+    /* Programs 리스트 */
+    .program-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 0.92rem;
+    }
+
+    .program-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #f4efe8;
+      font-size: 0.78rem;
+      color: #7d634c;
+      margin-bottom: 6px;
+    }
+
+    .program-tag span {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #e38c5a;
+    }
+
+    /* Link Hub 버튼 */
+    .link-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 4px;
+    }
+
+    .link-btn {
+      padding: 8px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      background: #fffdf9;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.02);
+    }
+
+    .link-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #f2b8a0;
+    }
+
+    /* Contact */
+    .contact-line {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 15px 34px;
+      font-size: 0.8rem;
+      color: #9a8473;
+      border-top: 1px solid rgba(240, 224, 212, 0.8);
+      background: #fdf3ea;
+    }
+
+    /* 반응형 */
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px 18px 22px;
+      }
+      .hero-title {
+        font-size: 1.6rem;
+      }
+      main {
+        padding-top: 20px;
+      }
+      .stack {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      nav {
+        justify-content: flex-end;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .nav-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav {
+        justify-content: flex-start;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
-    <h1>더블와이파파 (Double Y Papa)</h1>
+  <div class="nav-inner">
+    <div class="brand">
+      <span>DOUBLE Y PAPA</span>
+      <span>신중년의 두 번째 삶을 기록하는 사람</span>
+    </div>
     <nav>
-        <a href="#home">HOME</a>
-        <a href="#about">ABOUT</a>
-        <a href="#book">BOOK</a>
-        <a href="#lecture">LECTURE</a>
-        <a href="#programs">PROGRAMS</a>
-        <a href="#links">LINK HUB</a>
-        <a href="#contact">CONTACT</a>
+      <a href="#home">HOME</a>
+      <a href="#about">ABOUT</a>
+      <a href="#book">BOOK</a>
+      <a href="#lecture">LECTURE</a>
+      <a href="#programs">PROGRAMS</a>
+      <a href="#links">LINK HUB</a>
+      <a href="#contact">CONTACT</a>
     </nav>
+  </div>
 </header>
 
-<section id="home">
-    <h2>HOME</h2>
-    <p>신중년의 두 번째 삶을 글과 강의로 함께 여는 더블와이파파입니다.</p>
-</section>
+<main>
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div>
+      <div class="hero-badge">
+        <span></span> 《이 시대의 신중년이 사는 법》 저자 · 글과 강의로 사는 사람
+      </div>
+      <h1 class="hero-title">
+        신중년의 두 번째 삶을<br />
+        글과 강의로 함께 여는<br />
+        더블와이파파입니다.
+      </h1>
+      <p class="hero-sub">
+        불안과 관계, 경제와 정체성, 그리고 건강까지.<br />
+        인생 후반전을 스스로 설계할 수 있도록,
+        글쓰기와 브랜딩, 책과 강의를 통해 길을 비춥니다.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn-primary" onclick="location.href='#programs'">📚 프로그램 먼저 보기</button>
+        <button class="btn-ghost" onclick="location.href='#links'">🔗 링크 허브로 이동</button>
+      </div>
+      <p class="hero-note">
+        오늘 한 줄을 쓰는 사람이, 내일 한 권을 완성합니다.<br />
+        그 곁을 함께 걷는 동료이자 길잡이가 되고 싶습니다.
+      </p>
+    </div>
 
-<section id="about">
-    <h2>ABOUT</h2>
-    <p>《이 시대의 신중년이 사는 법》의 저자이자 신중년 글쓰기·브랜딩 강사입니다.</p>
-</section>
+    <div class="hero-card">
+      <div class="hero-card-title">지금, 더블와이파파와 함께라면</div>
+      <div>
+        <span class="hero-chip"><span class="hero-chip-dot"></span> 신중년 글쓰기</span>
+        <span class="hero-chip"><span class="hero-chip-dot"></span> 브랜딩 &amp; 강의</span>
+        <span class="hero-chip"><span class="hero-chip-dot"></span> 전자책 · 종이책 출간</span>
+      </div>
+      <p>
+        · 40대 작가가 바라본 60대 신중년의 삶<br />
+        · 《이 시대의 신중년이 사는 법》 · 《마흔에 깨달은 인생의 후반전》 저자<br />
+        · 신중년 글쓰기 · 전자책 · 브랜딩 강의 운영
+      </p>
+      <p style="font-size:0.82rem; color:#8f7662;">
+        인생 후반전의 이야기를, 혼자 품어두지 마세요.<br />
+        써보고, 나누고, 강의로 이어가는 여정을 함께 설계합니다.
+      </p>
+    </div>
+  </section>
 
-<section id="book">
-    <h2>BOOK</h2>
-    <p>📘 《이 시대의 신중년이 사는 법》 — 출간 10일 만에 2쇄</p>
-    <p>📗 《마흔에 깨달은 인생의 후반전》</p>
-</section>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-title">ABOUT</div>
+    <div class="card">
+      <h2>더블와이파파는 누구인가요?</h2>
+      <p>
+        신중년의 삶을 가장 가까이에서 관찰하고 기록하고 싶은 40대 작가입니다.
+        회사 밖에서 새로운 정체성을 찾는 분들,
+        “이후의 인생을 어떻게 살아야 할까”를 고민하는 분들과
+        글과 강의를 통해 만나고 있습니다.
+      </p>
+      <p>
+        《이 시대의 신중년이 사는 법》에서는 불안, 관계, 경제, 건강, 정체성이라는
+        다섯 가지 축으로 신중년의 삶을 정리했습니다.
+        강의와 모임에서는 이 내용을 바탕으로 각자의 이야기를 꺼내고,
+        다시 삶의 문장으로 엮어 가는 작업을 함께 합니다.
+      </p>
+      <p>
+        글은 한 사람의 인생을 정리하는 가장 따뜻한 방법이라고 믿습니다.
+        나이와 상관없이, 지금 여기가 ‘시작하기에 가장 좋은 시간’이라는 마음으로
+        신중년의 두 번째 삶을 응원합니다.
+      </p>
+    </div>
+  </section>
 
-<section id="lecture">
-    <h2>LECTURE</h2>
-    <p>신중년 글쓰기, 브랜딩, 전자책, 관계 등 다양한 강의를 진행합니다.</p>
-</section>
+  <!-- BOOK -->
+  <section id="book">
+    <div class="section-title">BOOK</div>
+    <div class="stack">
+      <div class="card">
+        <h2>저서 소개</h2>
+        <div class="book-item">
+          <span class="book-dot blue"></span>
+          <strong>《이 시대의 신중년이 사는 법》</strong>
+          <div class="book-sub">
+            · 교보문고 자기계발 분야 베스트 · 출간 10일 만에 2쇄<br />
+            · 불안, 관계, 경제, 건강, 정체성으로 풀어낸 인생 후반전 가이드
+          </div>
+        </div>
+        <div class="book-item">
+          <span class="book-dot green"></span>
+          <strong>《마흔에 깨달은 인생의 후반전》</strong>
+          <div class="book-sub">
+            · 40대에 미리 건너본 인생 2막의 풍경<br />
+            · 일, 관계, 마음의 체력을 다루는 에세이형 자기계발서
+          </div>
+        </div>
+        <p style="margin-top:14px;">
+          이 두 권의 책은 서로 다른 시점에서 같은 질문을 던집니다.<br />
+          “우리는 어떻게 나이 들어갈 것인가, 그리고 어떻게 살아낼 것인가.”
+        </p>
+      </div>
 
-<section id="programs">
-    <h2>PROGRAMS</h2>
-    <ul>
-        <li>전자책 작가 과정</li>
-        <li>종이책 작가 과정</li>
-        <li>더블스쿨 / 더블드림 / 다섯손가락</li>
-    </ul>
-</section>
+      <div class="card">
+        <h2>북콘서트 · 북토크</h2>
+        <p>
+          도서관, 평생교육원, 기업, 지자체 등에서
+          신중년 삶의 설계와 글쓰기를 주제로 북콘서트를 진행합니다.
+        </p>
+        <p>
+          강연은 강의형이 아니라, 각자의 이야기를 조금씩 꺼내고 나누는
+          ‘대화형 북토크’에 가깝습니다.
+        </p>
+        <p class="book-sub">
+          · 《이 시대의 신중년이 사는 법》 북콘서트<br />
+          · 신중년 글쓰기 북토크<br />
+          · 퇴직(예정)자 인생 2막 설계 특강
+        </p>
+      </div>
+    </div>
+  </section>
 
-<section id="links">
-    <h2>LINK HUB</h2>
-    <a class="link-button" href="https://litt.ly/double_y" target="_blank">전체 링크 모음 (litt.ly)</a>
-    <a class="link-button" href="https://www.instagram.com/dyypapa" target="_blank">Instagram</a>
-    <a class="link-button" href="https://www.threads.net/@dyypapa" target="_blank">Threads</a>
-    <a class="link-button" href="https://brunch.co.kr/@doubleypapa" target="_blank">Brunch</a>
-    <a class="link-button" href="https://blog.naver.com/doubley79" target="_blank">Blog</a>
-</section>
+  <!-- LECTURE -->
+  <section id="lecture">
+    <div class="section-title">LECTURE</div>
+    <div class="card">
+      <h2>강의 &amp; 특강 주제</h2>
+      <p>
+        신중년 글쓰기, 브랜딩, 전자책, 인생 후반전 설계까지.<br />
+        한 번의 강의가 아니라, 삶의 방향을 같이 세워 보는 시간을 지향합니다.
+      </p>
+      <ul style="margin:10px 0 6px; padding-left:18px; color:var(--text-soft); font-size:0.96rem;">
+        <li>《이 시대의 신중년이 사는 법》 북콘서트 &amp; 특강</li>
+        <li>신중년 글쓰기 입문 · 에세이 쓰기 워크숍</li>
+        <li>나를 브랜드로 만드는 법 · 신중년 퍼스널 브랜딩</li>
+        <li>전자책·종이책 작가 되기: 기획부터 출간까지</li>
+        <li>퇴직(예정)자를 위한 인생 2막 설계 강의</li>
+      </ul>
+      <p class="book-sub">
+        기관·단체별 상황에 맞춰 시간과 난이도를 조정합니다.<br />
+        강의 제안은 CONTACT 섹션의 이메일로 편하게 보내 주세요.
+      </p>
+    </div>
+  </section>
 
-<section id="contact">
-    <h2>CONTACT</h2>
-    <p>강의, 출간, 협업 문의는 아래 이메일로 연락해주세요.</p>
-    <p><strong>📧 doubleypapa@gmail.com</strong></p>
-</section>
+  <!-- PROGRAMS -->
+  <section id="programs">
+    <div class="section-title">PROGRAMS</div>
+    <div class="stack">
+      <div class="card">
+        <div class="program-tag">
+          <span></span> 신중년 글쓰기 &amp; 출간 프로그램
+        </div>
+        <h2>전자책 · 종이책 작가 과정</h2>
+        <div class="program-list">
+          <div>
+            <strong>전자책 작가 과정</strong><br />
+            기획 · 목차 · 초고 · 퇴고 · 출간까지 6주 안에 함께 완성하는 실전형 과정입니다.
+          </div>
+          <div>
+            <strong>종이책 작가 과정</strong><br />
+            1년 동안 원고부터 투고, 출간 후 브랜딩까지 동행하는 장기 프로그램입니다.
+          </div>
+          <div>
+            <strong>더블스쿨 · 더블드림 · 다섯손가락</strong><br />
+            신중년이 서로의 글과 일상을 나누는 동료 그룹입니다.
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="program-tag">
+          <span></span> 함께 걷는 모임
+        </div>
+        <h2>모임 &amp; 커뮤니티</h2>
+        <div class="program-list">
+          <div>
+            · 매주 글을 쓰고, 서로의 삶을 응원하는 **신중년 글쓰기 모임**<br />
+          </div>
+          <div>
+            · 책을 함께 읽고 나누는 **북클럽 &amp; 북토크 모임**
+          </div>
+          <div>
+            · 강의·브랜딩·출간을 함께 설계하는 **작가/강사 커뮤니티**
+          </div>
+        </div>
+        <p class="book-sub" style="margin-top:10px;">
+          신규 과정과 모집 안내는 LINK HUB의 인스타그램 · 스레드 · 블로그에서
+          가장 먼저 공지합니다.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINK HUB -->
+  <section id="links">
+    <div class="section-title">LINK HUB</div>
+    <div class="card">
+      <h2>더블와이파파를 만나는 곳</h2>
+      <p>아래 링크에서 글, 강의, 북콘서트 소식을 가장 빠르게 받아보실 수 있습니다.</p>
+      <div class="link-buttons">
+        <a class="link-btn" href="https://litt.ly/double_y" target="_blank" rel="noopener">
+          <span class="link-dot"></span> 전체 링크 모음 (litt.ly)
+        </a>
+        <a class="link-btn" href="https://www.instagram.com/dyypapa" target="_blank" rel="noopener">
+          <span class="link-dot"></span> Instagram @dyypapa
+        </a>
+        <a class="link-btn" href="https://www.threads.net/@dyypapa" target="_blank" rel="noopener">
+          <span class="link-dot"></span> Threads @dyypapa
+        </a>
+        <a class="link-btn" href="https://brunch.co.kr/@doubleypapa" target="_blank" rel="noopener">
+          <span class="link-dot"></span> Brunch 브런치 글
+        </a>
+        <a class="link-btn" href="https://blog.naver.com/doubley79" target="_blank" rel="noopener">
+          <span class="link-dot"></span> Naver Blog 블로그
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="section-title">CONTACT</div>
+    <div class="card">
+      <h2>강의 · 출간 · 협업 문의</h2>
+      <p class="contact-line">
+        강의 제안, 도서관/기관 프로그램, 북콘서트, 출간·브랜딩 협업 등은 아래 메일로 연락 주세요.
+      </p>
+      <p class="contact-line">
+        <strong>📧 이메일</strong><br />
+        <code style="background:#f8efe6; padding:4px 7px; border-radius:6px;">doubleypapa@gmail.com</code>
+      </p>
+      <p class="book-sub" style="margin-top:12px;">
+        메일 제목에 간단히 용도를 적어 주시면 (예: [도서관 강의 문의], [기업 특강 제안])
+        더 빠르게 확인할 수 있습니다.
+      </p>
+      <p class="book-sub">
+        하루의 끝, 한 사람의 메일함에 조용히 도착한 한 통의 편지처럼.<br />
+        가볍게, 그러나 솔직하게 건네 주시면 좋겠습니다.
+      </p>
+    </div>
+  </section>
+</main>
 
 <footer>
-    © 2025 Double Y Papa — All rights reserved.
+  © 2025 더블와이파파 (Double Y Papa). 신중년의 두 번째 삶을 응원합니다.
 </footer>
 
 </body>
