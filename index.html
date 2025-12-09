@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>더블와이파파 | 신중년의 두 번째 삶을 여는 글과 강의</title>
+  <title>더블와이파파 | 이 시대의 신중년이 사는 법</title>
 
-  <!-- 따뜻한 느낌의 웹폰트 -->
+  <!-- 따뜻한 느낌의 Gowun Dodum 폰트 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -34,7 +34,7 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: "Gowun Dodum", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
       background: radial-gradient(circle at top left, #ffe9d6 0, #fdf7f2 42%, #fdf7f2 100%);
       color: var(--text);
       line-height: 1.8;
@@ -268,28 +268,46 @@
       gap: 18px;
     }
 
-    .book-item {
-      margin-bottom: 10px;
-      padding-left: 3px;
-      position: relative;
+    /* BOOK 레이아웃 */
+    .book-layout {
+      display: grid;
+      grid-template-columns: 120px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      margin-bottom: 16px;
     }
 
-    .book-dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      display: inline-block;
-      margin-right: 6px;
+    .book-cover {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.03);
+      background: #fff;
     }
 
-    .book-dot.blue { background: #4ca3ff; }
-    .book-dot.green { background: #54c07a; }
+    .book-title {
+      font-weight: 700;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
 
-    .book-sub {
-      font-size: 0.85rem;
+    .book-meta {
+      font-size: 0.86rem;
       color: var(--text-soft);
-      margin-top: 4px;
-      opacity: 0.85;
+      margin-bottom: 4px;
+    }
+
+    .book-link {
+      font-size: 0.86rem;
+      color: #a45a2a;
+      text-decoration: underline;
+    }
+
+    .ebook-list {
+      margin: 4px 0 0;
+      padding-left: 18px;
+      font-size: 0.9rem;
+      color: var(--text-soft);
     }
 
     /* Programs 리스트 */
@@ -390,6 +408,9 @@
       nav {
         justify-content: flex-start;
       }
+      .book-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
   </style>
 </head>
@@ -419,25 +440,25 @@
   <section id="home" class="hero">
     <div>
       <div class="hero-badge">
-        <span></span> 《이 시대의 신중년이 사는 법》 저자 · 글과 강의로 사는 사람
+        <span></span> 《마흔에 깨달은 인생의 후반전》 · 《이 시대의 신중년이 사는 법》 저자
       </div>
       <h1 class="hero-title">
-        신중년의 두 번째 삶을<br />
-        글과 강의로 함께 여는<br />
+        멈춰 있던 인생을 다시 움직이게 하는 힘,<br />
+        신중년의 두 번째 삶을 여는<br />
         더블와이파파입니다.
       </h1>
       <p class="hero-sub">
-        불안과 관계, 경제와 정체성, 그리고 건강까지.<br />
-        인생 후반전을 스스로 설계할 수 있도록,
+        불안과 관계, 경제와 건강, 정체성까지.<br />
+        인생 후반전을 스스로 설계할 수 있도록
         글쓰기와 브랜딩, 책과 강의를 통해 길을 비춥니다.
       </p>
       <div class="hero-buttons">
-        <button class="btn-primary" onclick="location.href='#programs'">📚 프로그램 먼저 보기</button>
-        <button class="btn-ghost" onclick="location.href='#links'">🔗 링크 허브로 이동</button>
+        <button class="btn-primary" onclick="location.href='#book'">📚 저서 보기</button>
+        <button class="btn-ghost" onclick="location.href='#programs'">✏️ 프로그램 살펴보기</button>
       </div>
       <p class="hero-note">
-        오늘 한 줄을 쓰는 사람이, 내일 한 권을 완성합니다.<br />
-        그 곁을 함께 걷는 동료이자 길잡이가 되고 싶습니다.
+        오늘 한 줄을 쓰는 사람이, 내일 한 권의 책을 완성합니다.<br />
+        저는 그 곁을 함께 걷는 동료이자 길잡이가 되고 싶습니다.
       </p>
     </div>
 
@@ -449,13 +470,13 @@
         <span class="hero-chip"><span class="hero-chip-dot"></span> 전자책 · 종이책 출간</span>
       </div>
       <p>
-        · 40대 작가가 바라본 60대 신중년의 삶<br />
-        · 《이 시대의 신중년이 사는 법》 · 《마흔에 깨달은 인생의 후반전》 저자<br />
-        · 신중년 글쓰기 · 전자책 · 브랜딩 강의 운영
+        · 신중년의 삶을 가장 가까이에서 기록하는 40대 작가<br />
+        · 전자책 3권, 종이책 2권을 집필한 자기계발 베스트셀러 저자<br />
+        · 신중년·퇴직 예정자를 위한 글쓰기·브랜딩·출간 동행
       </p>
       <p style="font-size:0.82rem; color:#8f7662;">
-        인생 후반전의 이야기를, 혼자 품어두지 마세요.<br />
-        써보고, 나누고, 강의로 이어가는 여정을 함께 설계합니다.
+        인생 후반전의 이야기를 혼자 품어두지 마세요.<br />
+        써보고, 나누고, 강의와 책으로 이어가는 여정을 함께 설계합니다.
       </p>
     </div>
   </section>
@@ -474,8 +495,8 @@
       <p>
         《이 시대의 신중년이 사는 법》에서는 불안, 관계, 경제, 건강, 정체성이라는
         다섯 가지 축으로 신중년의 삶을 정리했습니다.
-        강의와 모임에서는 이 내용을 바탕으로 각자의 이야기를 꺼내고,
-        다시 삶의 문장으로 엮어 가는 작업을 함께 합니다.
+        《마흔에 깨달은 인생의 후반전》에서는 마흔과 예순의 대화를 통해
+        인생 2막의 풍경을 미리 건너가 보았습니다.
       </p>
       <p>
         글은 한 사람의 인생을 정리하는 가장 따뜻한 방법이라고 믿습니다.
@@ -490,44 +511,69 @@
     <div class="section-title">BOOK</div>
     <div class="stack">
       <div class="card">
-        <h2>저서 소개</h2>
-        <div class="book-item">
-          <span class="book-dot blue"></span>
-          <strong>《이 시대의 신중년이 사는 법》</strong>
-          <div class="book-sub">
-            · 교보문고 자기계발 분야 베스트 · 출간 10일 만에 2쇄<br />
-            · 불안, 관계, 경제, 건강, 정체성으로 풀어낸 인생 후반전 가이드
+        <h2>저서 소개 (종이책)</h2>
+
+        <!-- 이 시대의 신중년이 사는 법 -->
+        <div class="book-layout">
+          <div>
+            <img src="images/book-shinjoongnyun.jpg" alt="이 시대의 신중년이 사는 법 표지" class="book-cover">
+          </div>
+          <div>
+            <div class="book-title">《이 시대의 신중년이 사는 법》</div>
+            <div class="book-meta">
+              · 교보문고 자기계발 분야 베스트 4위 · 출간 10일 만에 2쇄 진행<br />
+              · 불안, 관계, 경제, 건강, 정체성으로 풀어낸 신중년의 인생 후반전 가이드
+            </div>
+            <a class="book-link" href="https://product.kyobobook.co.kr/detail/S000218519969" target="_blank" rel="noopener">
+              교보문고 도서 정보 바로가기
+            </a>
           </div>
         </div>
-        <div class="book-item">
-          <span class="book-dot green"></span>
-          <strong>《마흔에 깨달은 인생의 후반전》</strong>
-          <div class="book-sub">
-            · 40대에 미리 건너본 인생 2막의 풍경<br />
-            · 일, 관계, 마음의 체력을 다루는 에세이형 자기계발서
+
+        <!-- 마흔에 깨달은 인생의 후반전 -->
+        <div class="book-layout">
+          <div>
+            <img src="images/book-maheun.jpg" alt="마흔에 깨달은 인생의 후반전 표지" class="book-cover">
+          </div>
+          <div>
+            <div class="book-title">《마흔에 깨달은 인생의 후반전》</div>
+            <div class="book-meta">
+              · 40대에 미리 건너본 인생 2막의 풍경<br />
+              · 마흔과 예순과의 대화를 통해 삶의 진정한 의미를 살펴본 책
+            </div>
+            <a class="book-link" href="https://product.kyobobook.co.kr/detail/S000215131129" target="_blank" rel="noopener">
+              교보문고 도서 정보 바로가기
+            </a>
           </div>
         </div>
-        <p style="margin-top:14px;">
-          이 두 권의 책은 서로 다른 시점에서 같은 질문을 던집니다.<br />
-          “우리는 어떻게 나이 들어갈 것인가, 그리고 어떻게 살아낼 것인가.”
-        </p>
+
       </div>
 
       <div class="card">
-        <h2>북콘서트 · 북토크</h2>
+        <h2>저서 소개 (전자책 3권)</h2>
         <p>
-          도서관, 평생교육원, 기업, 지자체 등에서
-          신중년 삶의 설계와 글쓰기를 주제로 북콘서트를 진행합니다.
+          신중년의 인생 설계, 글쓰기, 브랜딩, 실전 경험을 담은 전자책 시리즈입니다.
         </p>
-        <p>
-          강연은 강의형이 아니라, 각자의 이야기를 조금씩 꺼내고 나누는
-          ‘대화형 북토크’에 가깝습니다.
-        </p>
-        <p class="book-sub">
-          · 《이 시대의 신중년이 사는 법》 북콘서트<br />
-          · 신중년 글쓰기 북토크<br />
-          · 퇴직(예정)자 인생 2막 설계 특강
-        </p>
+        <ul class="ebook-list">
+          <li>
+            <strong>1. 1시간만 투자하면 합격하는 면접의 기술</strong><br>
+            <a class="book-link" href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000006518277" target="_blank" rel="noopener">
+              교보문고 전자책 보기
+            </a>
+          </li>
+          <li>
+            <strong>2. 40% 재방문 블로그의 비밀</strong><br>
+            <a class="book-link" href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000006953045" target="_blank" rel="noopener">
+              교보문고 전자책 보기
+            </a>
+          </li>
+          <li>
+            <strong>3. 블로그와 함께라면 당신도 60세에 작가가 될 수 있습니다.</strong><br>
+            <a class="book-link" href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000009055970" target="_blank" rel="noopener">
+              교보문고 전자책 보기
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
   </section>
@@ -582,24 +628,19 @@
 
       <div class="card">
         <div class="program-tag">
-          <span></span> 함께 걷는 모임
+          <span></span> 더블와이파파 프로필
         </div>
-        <h2>모임 &amp; 커뮤니티</h2>
-        <div class="program-list">
-          <div>
-            · 매주 글을 쓰고, 서로의 삶을 응원하는 **신중년 글쓰기 모임**<br />
-          </div>
-          <div>
-            · 책을 함께 읽고 나누는 **북클럽 &amp; 북토크 모임**
-          </div>
-          <div>
-            · 강의·브랜딩·출간을 함께 설계하는 **작가/강사 커뮤니티**
-          </div>
-        </div>
-        <p class="book-sub" style="margin-top:10px;">
-          신규 과정과 모집 안내는 LINK HUB의 인스타그램 · 스레드 · 블로그에서
-          가장 먼저 공지합니다.
-        </p>
+        <h2>더블와이파파 프로필</h2>
+        <ul class="ebook-list" style="margin-top:4px;">
+          <li>자기계발 베스트셀러 저자 (전자책 3권, 종이책 2권 집필)</li>
+          <li>2025년 01월 『마흔에 깨달은 인생의 후반전』 출간</li>
+          <li>2025년 11월 신간 『이 시대의 신중년이 사는 법』 출간</li>
+          <li>신중년·퇴직 예정자 대상 글쓰기·브랜딩·전자책 과정 100회 이상 진행</li>
+          <li>신중년 전자책 출간 작가 50명 이상 배출, 종이책 작가 3명 배출</li>
+          <li>대학교 평생교육원, 지자체, 공단, 도서관 등 다수 강의</li>
+          <li>블로그·SNS 팔로워 5만 명, 실질적 브랜딩 경험 보유</li>
+          <li>신중년의 삶을 ‘글쓰기·브랜딩·출판’으로 연결하는 전문가</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -614,17 +655,23 @@
         <a class="link-btn" href="https://litt.ly/double_y" target="_blank" rel="noopener">
           <span class="link-dot"></span> 전체 링크 모음 (litt.ly)
         </a>
-        <a class="link-btn" href="https://www.instagram.com/dyypapa" target="_blank" rel="noopener">
-          <span class="link-dot"></span> Instagram @dyypapa
+        <a class="link-btn" href="https://blog.naver.com/yuni_yuli" target="_blank" rel="noopener">
+          <span class="link-dot"></span> 네이버 블로그
         </a>
-        <a class="link-btn" href="https://www.threads.net/@dyypapa" target="_blank" rel="noopener">
-          <span class="link-dot"></span> Threads @dyypapa
+        <a class="link-btn" href="https://www.threads.com/@double_y_papa" target="_blank" rel="noopener">
+          <span class="link-dot"></span> Threads 스레드
         </a>
-        <a class="link-btn" href="https://brunch.co.kr/@doubleypapa" target="_blank" rel="noopener">
-          <span class="link-dot"></span> Brunch 브런치 글
+        <a class="link-btn" href="https://www.instagram.com/double_2yy" target="_blank" rel="noopener">
+          <span class="link-dot"></span> 인스타그램
         </a>
-        <a class="link-btn" href="https://blog.naver.com/doubley79" target="_blank" rel="noopener">
-          <span class="link-dot"></span> Naver Blog 블로그
+        <a class="link-btn" href="https://brunch.co.kr/@double-y" target="_blank" rel="noopener">
+          <span class="link-dot"></span> 브런치
+        </a>
+        <a class="link-btn" href="https://x.com/dyypapa" target="_blank" rel="noopener">
+          <span class="link-dot"></span> X (트위터)
+        </a>
+        <a class="link-btn" href="https://www.youtube.com/@Double_Y_PaPa/shorts" target="_blank" rel="noopener">
+          <span class="link-dot"></span> 유튜브 Shorts
         </a>
       </div>
     </div>
