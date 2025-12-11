@@ -35,7 +35,8 @@
     }
 
     body {
-      font-family: "Gowun Dodum", sans-serif;
+      font-family: "Gowun Dodum", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
       background: radial-gradient(circle at top left, #fdfcfb 0, #f4f7fb 40%, #edf3ff 100%);
       color: var(--text-main);
       line-height: 1.6;
@@ -56,7 +57,8 @@
       padding: 32px 20px 64px;
     }
 
-    /* 헤더 */
+    /* 헤더 & 내비게이션 */
+
     header {
       display: flex;
       flex-direction: column;
@@ -89,15 +91,21 @@
       background: rgba(255, 255, 255, 0.9);
       border: 1px solid rgba(21, 96, 100, 0.12);
       color: var(--text-soft);
-      transition: 0.2s;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.1s ease,
+        box-shadow 0.2s ease, color 0.2s ease;
     }
 
     .nav-pill:hover {
       background: var(--accent-soft);
       color: var(--accent-strong);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+      transform: translateY(-1px);
+      text-decoration: none;
     }
 
-    /* 공통 섹션 */
+    /* 섹션 공통 */
+
     section {
       margin-bottom: 32px;
     }
@@ -117,19 +125,38 @@
       color: var(--text-main);
     }
 
+    .section-desc {
+      font-size: 0.95rem;
+      color: var(--text-soft);
+      margin-bottom: 18px;
+    }
+
     .card {
       background: var(--card);
       border-radius: 18px;
-      padding: 18px 20px;
+      padding: 18px 20px 20px;
       border: 1px solid var(--border-soft);
       box-shadow: 0 8px 28px rgba(15, 30, 60, 0.04);
     }
 
-    /* 프로필 */
+    /* 프로필 카드 */
+
     .profile-card {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.6fr);
       gap: 18px;
+    }
+
+    .profile-main-line {
+      font-size: 1.05rem;
+      margin-bottom: 8px;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
     }
 
     .chip {
@@ -139,18 +166,33 @@
       background: var(--accent-soft);
       color: var(--accent-strong);
       border: 1px solid rgba(21,96,100,0.12);
-      margin-right: 6px;
     }
 
     .profile-list {
       font-size: 0.92rem;
       color: var(--text-soft);
       list-style: none;
+      margin: 0;
+      padding: 0;
     }
 
-    .profile-list li { margin-bottom: 6px; }
+    .profile-list li {
+      margin-bottom: 4px;
+      padding-left: 14px;
+      position: relative;
+    }
 
-    /* ⭐ 프로필 배너 이미지 */
+    .profile-list li::before {
+      content: "●";
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-size: 0.65rem;
+      color: #333;
+    }
+
+    /* 프로필 배너 이미지 */
+
     .profile-hero {
       grid-column: 1 / -1;
       margin-top: 10px;
@@ -159,203 +201,715 @@
     .profile-hero img {
       width: 100%;
       height: auto;
-      border-radius: 16px;
       display: block;
+      border-radius: 16px;
     }
 
-    /* 책 섹션 */
-    .book-grid {
+    .profile-cta-wrap {
+      margin-top: 14px;
+    }
+
+    .profile-cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 18px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      color: #ffffff;
+      font-size: 0.9rem;
+      border: none;
+      text-decoration: none;
+    }
+
+    .profile-cta-btn:hover {
+      background: #0b3f44;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* 신중년 전용관 */
+
+    .senior-hub {
+      background: linear-gradient(
+        130deg,
+        rgba(224, 244, 242, 0.9),
+        rgba(255, 255, 255, 0.96)
+      );
+      border-radius: 20px;
+      padding: 20px 20px 18px;
+      border: 1px solid rgba(21, 96, 100, 0.16);
+    }
+
+    .senior-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .senior-tag {
+      font-size: 0.78rem;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: var(--badge);
+      color: #5b3300;
+    }
+
+    .senior-sub {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 16px;
+    }
+
+    .senior-layout {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 20px;
-    }
-
-    .book-card {
-      border-radius: 18px;
-      background: var(--card);
-      padding: 14px;
-      display: flex;
+      grid-template-columns: minmax(0, 1fr);
       gap: 12px;
-      border: 1px solid var(--border-soft);
     }
 
-    .book-cover img {
-      width: 95px;
-      border-radius: 10px;
-      border: 1px solid rgba(0,0,0,0.1);
+    .senior-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
-    .book-title {
-      font-weight: 700;
-      margin-bottom: 4px;
+    .senior-card {
+      background: rgba(255, 255, 255, 0.96);
+      border-radius: 16px;
+      padding: 14px 14px 14px;
+      border: 1px solid rgba(21, 96, 100, 0.12);
     }
 
-    .book-desc {
-      font-size: 0.86rem;
+    .senior-card h3 {
+      font-size: 1rem;
+      margin-bottom: 6px;
+      color: var(--accent-strong);
+    }
+
+    .senior-card p {
+      font-size: 0.9rem;
       color: var(--text-soft);
       margin-bottom: 6px;
     }
 
-    /* LINK HUB */
-    .link-grid {
+    .pill-list {
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+      margin-bottom: 4px;
+      padding: 0;
+    }
+
+    .pill-list li {
+      font-size: 0.82rem;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(240, 245, 250, 0.9);
+      color: var(--text-soft);
+    }
+
+    .step-list {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      list-style: none;
+      padding-left: 0;
+      margin: 4px 0 8px 0;
+    }
+
+    .step-list li {
+      margin-bottom: 3px;
+    }
+
+    .link-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: var(--accent-strong);
+      color: #ffffff;
+      font-size: 0.85rem;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-button:hover {
+      background: #0b3f44;
+      color: #ffffff;
+      text-decoration: none;
+    }
+
+    /* 책 섹션 */
+
+    .book-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+    }
+
+    .book-card {
+      border-radius: 18px;
+      border: 1px solid var(--border-soft);
+      background: var(--card);
+      padding: 14px 14px 16px;
+      display: grid;
+      grid-template-columns: 95px minmax(0, 1fr);
+      gap: 10px;
+      align-items: flex-start;
+    }
+
+    .book-cover {
+      width: 100%;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      background: #ffffff;
+    }
+
+    .book-cover img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .book-title {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--text-main);
+    }
+
+    .book-meta {
+      font-size: 0.82rem;
+      color: var(--accent-strong);
+      margin-bottom: 6px;
+    }
+
+    .book-desc {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      margin-bottom: 6px;
+    }
+
+    .book-links {
+      font-size: 0.86rem;
+    }
+
+    /* 전자책 섹션 */
+
+    .ebook-list {
+      font-size: 0.9rem;
+      color: var(--text-soft);
+      list-style: none;
+      padding-left: 0;
+      margin: 0;
+    }
+
+    .ebook-list li {
+      margin-bottom: 6px;
+    }
+
+    /* LINK HUB */
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 14px;
     }
 
     .link-item {
-      padding: 12px;
+      font-size: 0.9rem;
+      padding: 10px 12px;
       border-radius: 12px;
-      background: #fff;
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border-soft);
     }
 
     .link-top {
       display: flex;
       align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
+      gap: 6px;
+      margin-bottom: 4px;
     }
 
     .link-icon {
-      width: 26px;
-      height: 26px;
-      border-radius: 6px;
-      background-size: cover;
-      background-position: center;
+      width: 24px;
+      height: 24px;
+      border-radius: 999px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: #ffffff;
     }
 
-    .icon-instagram { background-image: url('icons/instagram.png'); }
-    .icon-threads { background-image: url('icons/threads.png'); }
-    .icon-brunch { background-image: url('icons/brunch.png'); }
-    .icon-youtube { background-image: url('icons/youtube.png'); }
+    .link-icon-all { background: #156064; }   /* 전체 */
+    .link-icon-blog { background: #2db400; }  /* 네이버 */
+    .link-icon-thr { background: #000000; }   /* Threads */
+    .link-icon-ig { background: #e1306c; }    /* 인스타그램 */
+    .link-icon-br { background: #00a0e9; }    /* 브런치 */
+    .link-icon-x { background: #000000; }     /* X */
+    .link-icon-yt { background: #ff0000; }    /* 유튜브 */
 
+    .link-label {
+      font-size: 0.82rem;
+      color: var(--text-soft);
+    }
+
+    .link-url {
+      font-size: 0.86rem;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #777777;
+      text-align: center;
+    }
+
+    /* 반응형 */
+
+    @media (max-width: 719px) {
+      .profile-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (min-width: 720px) {
+      header {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-end;
+      }
+
+      .senior-layout {
+        grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .brand-title {
+        font-size: 1.5rem;
+      }
+    }
   </style>
 </head>
-
 <body>
   <div class="page">
-
+    <!-- 헤더 & 내비 -->
     <header>
       <div>
         <div class="brand-title">더블와이파파 (Double Y Papa)</div>
-        <div class="brand-sub">신중년의 두 번째 삶을 글쓰기·브랜딩·출판으로 잇는 사람</div>
+        <div class="brand-sub">
+          신중년의 두 번째 삶을 글쓰기·브랜딩·출판으로 잇는 사람
+        </div>
       </div>
-
-      <nav>
+      <nav aria-label="주요 메뉴">
         <a class="nav-pill" href="#profile">PROFILE</a>
+        <a class="nav-pill" href="#senior-hub">신중년 전용관</a>
         <a class="nav-pill" href="#books">BOOK</a>
         <a class="nav-pill" href="#ebooks">E-BOOK</a>
         <a class="nav-pill" href="#links">LINK HUB</a>
       </nav>
     </header>
 
-    <!-- PROFILE -->
+    <!-- 프로필 -->
     <section id="profile">
       <div class="section-label">PROFILE</div>
       <h2 class="section-title">더블와이파파 프로필</h2>
 
       <div class="card profile-card">
         <div>
-          신중년의 삶을 글쓰기·브랜딩·출판으로 연결하는<br>
-          자기계발 베스트셀러 작가, <strong>더블와이파파</strong>입니다.
-          <div style="margin:10px 0;">
+          <p class="profile-main-line">
+            신중년의 삶을 글쓰기·브랜딩·출판으로 연결하는<br />
+            자기계발 베스트셀러 작가, <strong>더블와이파파</strong>입니다.
+          </p>
+          <div class="chip-row">
             <span class="chip">신중년 글쓰기 코치</span>
-            <span class="chip">브랜딩 & 전자책 코칭</span>
+            <span class="chip">브랜딩 &amp; 전자책 코칭</span>
             <span class="chip">자기계발 베스트셀러 작가</span>
           </div>
         </div>
-
         <div>
           <ul class="profile-list">
-            <li>● 자기계발 베스트셀러 저자</li>
-            <li>● 연간 강의 200회 진행</li>
-            <li>● 전자책·종이책 출간 70명 이상</li>
-            <li>● 글쓰기·브랜딩 강의 100회 이상</li>
+            <li>자기계발 베스트셀러 저자 (전자책 3권, 종이책 2권 집필)</li>
+            <li>2025년 01월 『마흔에 깨달은 인생의 후반전』 출간</li>
+            <li>2025년 11월 『이 시대의 신중년이 사는 법』 출간</li>
+            <li>연간 강의 200회(온라인·오프라인) 진행</li>
+            <li>전자책 출간 수강생 70명 이상, 종이책 출간 수강생 5명 이상</li>
+            <li>신중년·퇴직 예정자 대상 글쓰기·브랜딩·전자책 과정 100회 이상 진행</li>
+            <li>대학교 평생교육원, 지자체, 공단, 도서관 등 강의 다수</li>
+            <li>블로그·SNS 팔로워 5만 명, 실질적 브랜딩 경험 보유</li>
+            <li>신중년의 삶을 ‘글쓰기·브랜딩·출판’으로 연결하는 전문가</li>
           </ul>
         </div>
 
-        <!-- ⭐ 프로필 배너 -->
+        <!-- 프로필 배너 이미지: 파일명/경로는 실제 업로드에 맞게 수정 -->
         <div class="profile-hero">
-          <img src="images/profile-hero.png" alt="더블와이파파 브랜딩 이미지">
+          <img src="images/profile-hero-doubleypapa.png" alt="신중년 브랜딩 코치 더블와이파파">
         </div>
       </div>
 
-      <!-- 무료 상담 버튼 -->
-      <a href="https://litt.ly/double_y" class="nav-pill" style="margin-top:14px; background:#156064; color:#fff;">
-        더블와이파파 1:1 상담(무료)
-      </a>
+      <div class="profile-cta-wrap">
+        <a
+          class="profile-cta-btn"
+          href="https://open.kakao.com/o/sOXNbU3c"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          더블와이파파 1:1 상담(무료)
+        </a>
+      </div>
     </section>
 
-    <!-- BOOK SECTION (마흔 책 이미지 수정됨) -->
+    <!-- 신중년 전용관 -->
+    <section id="senior-hub">
+      <div class="section-label">SENIOR HUB</div>
+
+      <div class="senior-hub">
+        <div class="senior-title">
+          <h2 class="section-title" style="margin-bottom:0;">신중년 전용관 (55세 이상)</h2>
+          <span class="senior-tag">55+</span>
+        </div>
+        <p class="senior-sub">
+          55세 이후, 인생의 후반전을 준비하는 분들을 위한 전용 공간입니다.<br />
+          함께 쓰고 배우며, 각자의 이름으로 책을 남기고 싶은 신중년들을 초대합니다.
+        </p>
+
+        <div class="senior-layout">
+          <!-- 왼쪽 컬럼: 더블드림 + 무료 강의 -->
+          <div class="senior-col">
+            <!-- 더블드림 -->
+            <div class="senior-card">
+              <h3>1. 더블드림 가입하기</h3>
+              <p>
+                신중년의 글쓰기·브랜딩·전자책을 함께 연습하는<br />
+                더블와이파파의 대표 커뮤니티입니다.
+              </p>
+              <p style="font-size:0.88rem; margin-bottom:10px;">
+                함께 쓰고, 함께 배우고, 함께 성장하고 싶은 분들을 초대합니다.
+              </p>
+              <a
+                class="link-button"
+                href="https://blog.naver.com/yuni_yuli/223816763098"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                더블드림 가입 안내 보기
+              </a>
+            </div>
+
+            <!-- 무료 강의 -->
+            <div class="senior-card">
+              <h3>2. 무료 강의 (준비 중)</h3>
+              <p>
+                아래 주제의 무료 강의를 유튜브로 순차 업로드할 예정입니다.<br />
+                각 항목은 향후 유튜브 링크와 연결됩니다.
+              </p>
+              <ul class="pill-list">
+                <li>블로그 강의</li>
+                <li>브런치 합격의 비밀</li>
+                <li>스레드의 기초</li>
+                <li>인스타그램의 기초</li>
+              </ul>
+              <p style="font-size:0.8rem; color:#777; margin-top:4px;">
+                * 유튜브 채널에 업로드되는 대로, 이곳 링크도 함께 업데이트됩니다.
+              </p>
+            </div>
+          </div>
+
+          <!-- 오른쪽 컬럼: 전자책 코칭 + 종이책 코칭 -->
+          <div class="senior-col">
+            <!-- 전자책 코칭 -->
+            <div class="senior-card">
+              <h3>3. 전자책 코칭 상담 (1:1 과정 · 8주)</h3>
+              <p style="font-size:0.9rem; margin-bottom:4px;">
+                신중년의 첫 전자책 출간을 돕는 1:1 맞춤 코칭입니다.<br />
+                8주 동안 매주 한 번 ZOOM으로 만나 기획부터 서점 등록까지 함께합니다.
+              </p>
+              <ul class="step-list">
+                <li>① 기획 · 타깃과 메시지 정리</li>
+                <li>② 주제 선정 · 신중년 삶에서 핵심 한 가지 뽑기</li>
+                <li>③ 목차 구성 · 독자가 따라오기 쉬운 흐름 만들기</li>
+                <li>④ 글쓰기 · 매주 분량 목표를 정해 실제 원고 작성</li>
+                <li>⑤ 퇴고 · 문장 다듬기, 흐름 정리, 메시지 강화</li>
+                <li>⑥ 표지 기획 · 콘셉트 정하고 표지 시안 점검</li>
+                <li>⑦ 서점 유통 등록 · 온라인 서점에 전자책 등록</li>
+                <li>⑧ 인물 등록 · 작가 프로필 등록, 검색되는 이름 만들기</li>
+                <li>⑨ 출간 이벤트 · 리뷰, 노출 전략 설계</li>
+              </ul>
+              <p style="font-size:0.86rem; margin-bottom:4px;">
+                · 기본 구성: <strong>8주 / 주 1회 ZOOM 수업 (1:1 진행)</strong>
+              </p>
+              <p style="font-size:0.86rem;">
+                · 진행 유형: <strong>5인 이상 단체반</strong> / <strong>1:1 개인 코칭</strong> 중 선택
+              </p>
+            </div>
+
+            <!-- 종이책 코칭 -->
+            <div class="senior-card">
+              <h3>4. 종이책 코칭 과정</h3>
+              <p style="font-size:0.9rem; margin-bottom:4px;">
+                인생 후반전에 ‘내 이름으로 된 종이책 한 권’을 남기고 싶은 신중년을 위한 장기 코칭입니다.
+              </p>
+              <p style="font-size:0.86rem; margin-bottom:4px;">
+                · 참여기간: <strong>6개월 ~ 9개월</strong><br />
+                · 진행: 주 1회 온라인 미팅, 월 1회 대면 미팅<br />
+                · 내용: 기획, 집필, 퇴고, 투고, 홍보, 출판사 선정 이후 과정까지 디테일하게 점검합니다.
+              </p>
+              <a
+                class="link-button"
+                href="https://open.kakao.com/o/sOXNbU3c"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                전자책·종이책 코칭 1:1 상담 신청
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 종이책 소개 -->
     <section id="books">
       <div class="section-label">BOOK</div>
-      <h2 class="section-title">출간 도서</h2>
+      <h2 class="section-title">종이책 소개</h2>
+      <p class="section-desc">
+        신중년의 인생 후반전을 여는 두 권의 책입니다.
+      </p>
 
       <div class="book-grid">
-
-        <!-- 마흔 책 이미지 경로 정상화 -->
-        <div class="book-card">
+        <!-- 이 시대의 신중년이 사는 법 -->
+        <article class="book-card">
           <div class="book-cover">
-            <img src="images/book-maheun.jpg" alt="마흔에 깨달은 인생의 후반전">
+            <!-- 실제 파일 확장자(jpg/png/webp 등)에 맞게 수정 -->
+            <img
+              src="images/book-shinjoongnyun.png"
+              alt="이 시대의 신중년이 사는 법 표지"
+            />
           </div>
           <div>
-            <div class="book-title">마흔에 깨달은 인생의 후반전</div>
-            <div class="book-desc">2025년 1월 출간</div>
+            <div class="book-title">『이 시대의 신중년이 사는 법』</div>
+            <div class="book-meta">
+              · 교보문고 자기계발 분야 베스트 4위 · 출간 10일 만에 2쇄 진행
+            </div>
+            <p class="book-desc">
+              불안, 관계, 경제, 건강, 정체성으로 풀어낸 신중년의 인생 후반전
+              가이드. 멈춰 있던 인생을 다시 움직이게 하는 힘을 담았습니다.
+            </p>
+            <p class="book-links">
+              교보문고 링크:
+              <a
+                href="https://product.kyobobook.co.kr/detail/S000218519969"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                자세히 보기
+              </a>
+            </p>
           </div>
-        </div>
+        </article>
 
-        <div class="book-card">
+        <!-- 마흔에 깨달은 인생의 후반전 -->
+        <article class="book-card">
           <div class="book-cover">
-            <img src="images/book-senior.jpg" alt="이 시대의 신중년이 사는 법">
+            <!-- 여기 파일 이름/확장자를 실제 업로드에 맞게 바꿔 주세요 -->
+            <img
+              src="images/book-maheun.png"
+              alt="마흔에 깨달은 인생의 후반전 표지"
+            />
           </div>
           <div>
-            <div class="book-title">이 시대의 신중년이 사는 법</div>
-            <div class="book-desc">2025년 11월 출간</div>
+            <div class="book-title">『마흔에 깨달은 인생의 후반전』</div>
+            <div class="book-meta">
+              · 40대에 미리 건너본 인생 2막의 풍경
+            </div>
+            <p class="book-desc">
+              마흔과 예순의 대화를 통해 삶의 진정한 의미를 살펴봅니다.
+              지금의 내가 인생 후반전을 어떻게 준비할지, 구체적인 그림을
+              그려볼 수 있게 돕는 책입니다.
+            </p>
+            <p class="book-links">
+              교보문고 링크:
+              <a
+                href="https://product.kyobobook.co.kr/detail/S000215131129"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                자세히 보기
+              </a>
+            </p>
           </div>
-        </div>
-
+        </article>
       </div>
     </section>
 
-    <!-- LINK HUB -->
+    <!-- 전자책 소개 -->
+    <section id="ebooks">
+      <div class="section-label">E-BOOK</div>
+      <h2 class="section-title">전자책 3권 소개</h2>
+      <p class="section-desc">
+        신중년의 커리어 전환과 브랜딩, 실전 노하우를 담은 전자책들입니다.
+      </p>
+
+      <div class="card">
+        <ul class="ebook-list">
+          <li>
+            1. <strong>1시간만 투자하면 합격하는 면접의 기술</strong><br />
+            <a
+              href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000006518277"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              교보문고 eBook 보러가기
+            </a>
+          </li>
+          <li>
+            2. <strong>40% 재방문 블로그의 비밀</strong><br />
+            <a
+              href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000006953045"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              교보문고 eBook 보러가기
+            </a>
+          </li>
+          <li>
+            3. <strong>블로그와 함께라면 당신도 60세에 작가가 될 수 있습니다.</strong><br />
+            <a
+              href="https://ebook-product.kyobobook.co.kr/dig/epd/ebook/E000009055970"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              교보문고 eBook 보러가기
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 링크 허브 -->
     <section id="links">
       <div class="section-label">LINK HUB</div>
-      <h2 class="section-title">채널 바로가기</h2>
+      <h2 class="section-title">LINK HUB</h2>
+      <p class="section-desc">
+        더블와이파파의 모든 채널을 한 곳에서 확인할 수 있습니다.
+      </p>
 
-      <div class="link-grid">
-
-        <div class="link-item">
-          <div class="link-top">
-            <div class="link-icon icon-instagram"></div> 인스타그램
+      <div class="card">
+        <div class="link-grid">
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-all">ALL</div>
+              <div class="link-label">전체 링크 모음</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://litt.ly/double_y"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://litt.ly/double_y</a>
+            </div>
           </div>
-          <div>https://www.instagram.com/double_y</div>
-        </div>
 
-        <div class="link-item">
-          <div class="link-top">
-            <div class="link-icon icon-threads"></div> 스레드
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-blog">B</div>
+              <div class="link-label">네이버 블로그</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://blog.naver.com/yuni_yuli"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://blog.naver.com/yuni_yuli</a>
+            </div>
           </div>
-          <div>https://www.threads.net/@double_y</div>
-        </div>
 
-        <div class="link-item">
-          <div class="link-top">
-            <div class="link-icon icon-brunch"></div> 브런치
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-thr">Th</div>
+              <div class="link-label">스레드 (Threads)</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://www.threads.net/@double_y_papa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://www.threads.net/@double_y_papa</a>
+            </div>
           </div>
-          <div>https://brunch.co.kr/@double-y</div>
-        </div>
 
-        <div class="link-item">
-          <div class="link-top">
-            <div class="link-icon icon-youtube"></div> 유튜브
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-ig">IG</div>
+              <div class="link-label">인스타그램</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://www.instagram.com/double_2yy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://www.instagram.com/double_2yy</a>
+            </div>
           </div>
-          <div>https://youtube.com/@Double_Y_PaPa</div>
-        </div>
 
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-br">Br</div>
+              <div class="link-label">브런치</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://brunch.co.kr/@double-y"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://brunch.co.kr/@double-y</a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-x">X</div>
+              <div class="link-label">X(트위터)</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://x.com/dyypapa"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://x.com/dyypapa</a>
+            </div>
+          </div>
+
+          <div class="link-item">
+            <div class="link-top">
+              <div class="link-icon link-icon-yt">YT</div>
+              <div class="link-label">유튜브</div>
+            </div>
+            <div class="link-url">
+              <a
+                href="https://www.youtube.com/@Double_Y_PaPa/shorts"
+                target="_blank"
+                rel="noopener noreferrer"
+              >https://www.youtube.com/@Double_Y_PaPa/shorts</a>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
 
+    <footer>
+      © 더블와이파파 Double Y Papa. All rights reserved.
+    </footer>
   </div>
 </body>
 </html>
