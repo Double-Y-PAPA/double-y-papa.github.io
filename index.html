@@ -194,12 +194,14 @@
     /* 프로필 배너 이미지 */
 
     .profile-hero {
-      grid-column: 1 / -1;
+      grid-column: 1 / 2;   /* 왼쪽 칸에만 배치 */
+      grid-row: 2 / 3;      /* 왼쪽 상단 텍스트 아래 */
       margin-top: 10px;
     }
 
     .profile-hero img {
       width: 100%;
+      max-width: 420px;
       height: auto;
       display: block;
       border-radius: 16px;
@@ -343,23 +345,47 @@
       text-decoration: none;
     }
 
-    /* 책 섹션 */
+    /* 책 섹션 — 종이책 UI (전자책보다 살짝 고급스럽게) */
 
     .book-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 18px;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
     }
 
     .book-card {
+      position: relative;
       border-radius: 18px;
-      border: 1px solid var(--border-soft);
-      background: var(--card);
-      padding: 14px 14px 16px;
+      border: 1px solid rgba(21, 96, 100, 0.16);
+      background: radial-gradient(circle at top left, #ffffff 0, #f8fbff 55%, #f3f6fb 100%);
+      padding: 16px 16px 18px;
       display: grid;
-      grid-template-columns: 95px minmax(0, 1fr);
-      gap: 10px;
+      grid-template-columns: 100px minmax(0, 1fr);
+      gap: 12px;
       align-items: flex-start;
+      box-shadow: 0 10px 30px rgba(15, 30, 60, 0.06);
+    }
+
+    .book-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      pointer-events: none;
+    }
+
+    .book-card.featured::after {
+      content: "BEST";
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #ffb347;
+      color: #5b3300;
     }
 
     .book-cover {
@@ -384,7 +410,7 @@
     }
 
     .book-meta {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--accent-strong);
       margin-bottom: 6px;
     }
@@ -397,6 +423,10 @@
 
     .book-links {
       font-size: 0.86rem;
+    }
+
+    .book-links a {
+      font-weight: 600;
     }
 
     /* 전자책 섹션 */
@@ -480,6 +510,20 @@
       .profile-card {
         grid-template-columns: minmax(0, 1fr);
       }
+
+      .profile-hero {
+        grid-column: 1 / -1;
+        grid-row: auto;
+        margin-top: 10px;
+      }
+
+      .profile-hero img {
+        max-width: 100%;
+      }
+
+      .book-card {
+        grid-template-columns: minmax(0, 1fr);
+      }
     }
 
     @media (min-width: 720px) {
@@ -536,7 +580,13 @@
             <span class="chip">브랜딩 &amp; 전자책 코칭</span>
             <span class="chip">자기계발 베스트셀러 작가</span>
           </div>
+
+          <div class="profile-hero">
+            <!-- 실제 파일 경로/이름에 맞춰 수정 -->
+            <img src="images/profile-hero-doubleypapa.png" alt="신중년 브랜딩 코치 더블와이파파">
+          </div>
         </div>
+
         <div>
           <ul class="profile-list">
             <li>자기계발 베스트셀러 저자 (전자책 3권, 종이책 2권 집필)</li>
@@ -549,11 +599,6 @@
             <li>블로그·SNS 팔로워 5만 명, 실질적 브랜딩 경험 보유</li>
             <li>신중년의 삶을 ‘글쓰기·브랜딩·출판’으로 연결하는 전문가</li>
           </ul>
-        </div>
-
-        <!-- 프로필 배너 이미지: 파일명/경로는 실제 업로드에 맞게 수정 -->
-        <div class="profile-hero">
-          <img src="images/profile-hero-doubleypapa.png" alt="신중년 브랜딩 코치 더블와이파파">
         </div>
       </div>
 
@@ -687,10 +732,10 @@
       </p>
 
       <div class="book-grid">
-        <!-- 이 시대의 신중년이 사는 법 -->
-        <article class="book-card">
+        <!-- 이 시대의 신중년이 사는 법 (FEATURED) -->
+        <article class="book-card featured">
           <div class="book-cover">
-            <!-- 실제 파일 확장자(jpg/png/webp 등)에 맞게 수정 -->
+            <!-- 실제 파일 확장자에 맞게: png -->
             <img
               src="images/book-shinjoongnyun.png"
               alt="이 시대의 신중년이 사는 법 표지"
@@ -702,8 +747,8 @@
               · 교보문고 자기계발 분야 베스트 4위 · 출간 10일 만에 2쇄 진행
             </div>
             <p class="book-desc">
-              불안, 관계, 경제, 건강, 정체성으로 풀어낸 신중년의 인생 후반전
-              가이드. 멈춰 있던 인생을 다시 움직이게 하는 힘을 담았습니다.
+              불안, 관계, 경제, 건강, 정체성으로 풀어낸 신중년의 인생 후반전 가이드.
+              “지금 여기”에서 후반전을 다시 설계하고 싶은 이들을 위한 실천 로드맵입니다.
             </p>
             <p class="book-links">
               교보문고 링크:
@@ -721,9 +766,9 @@
         <!-- 마흔에 깨달은 인생의 후반전 -->
         <article class="book-card">
           <div class="book-cover">
-            <!-- 여기 파일 이름/확장자를 실제 업로드에 맞게 바꿔 주세요 -->
+            <!-- 실제 파일 확장자에 맞게: jpg -->
             <img
-              src="images/book-maheun.png"
+              src="images/book-maheun.jpg"
               alt="마흔에 깨달은 인생의 후반전 표지"
             />
           </div>
@@ -734,8 +779,7 @@
             </div>
             <p class="book-desc">
               마흔과 예순의 대화를 통해 삶의 진정한 의미를 살펴봅니다.
-              지금의 내가 인생 후반전을 어떻게 준비할지, 구체적인 그림을
-              그려볼 수 있게 돕는 책입니다.
+              지금의 내가 인생 후반전을 어떻게 준비할지, 구체적인 그림을 그려볼 수 있게 돕는 책입니다.
             </p>
             <p class="book-links">
               교보문고 링크:
